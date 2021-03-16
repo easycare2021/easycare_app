@@ -1,14 +1,20 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { Provider } from 'react-redux';
-import store from './store';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default function App() {
-    return (
-        <Provider store={store}>
-            <View>
-                <Text>Okay</Text>
-            </View>
-        </Provider>
-    );
-}
+import Welcome from './pages/Welcome';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+
+const AppNavigator = createStackNavigator(
+    {
+      Welcome: Welcome,
+      SignIn: SignIn,
+      SignUp: SignUp,
+    },
+    {
+      initialRouteName: 'Welcome',
+      defaultNavigationOptions: { headerShown: false }
+    },
+);
+  
+export default createAppContainer(AppNavigator);
