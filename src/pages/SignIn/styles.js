@@ -33,19 +33,31 @@ export const InputContainer = styled.View`
     display: flex;
     justifyContent: center;
     alignItems: center;
+    width: 300px;
 `;
 
 
-export const SignInButton = styled.Text`
+export const SignInButton = styled.View`
     border: 1px solid ${colors.white};
     border-radius: 50px;
     width: 300px;
     height: 50px;
-    textAlign: center;
-    textAlignVertical: center;
-    color: ${colors.white};
+    display: flex;
+    alignItems: center;
+    justifyContent: center;
+    flexDirection: row;
     background-color: ${colors.primary};
+`;
+
+export const SignInText = styled.Text`
     textTransform: uppercase;
+    color: ${colors.white};
+    fontSize: ${ fontSize.default };
+`;
+
+export const Loading = styled.ActivityIndicator`
+    alignSelf: center;
+    marginLeft: 10px;
 `;
 
 export const ForgotPassword = styled.Text`

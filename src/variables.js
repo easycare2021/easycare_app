@@ -24,7 +24,7 @@ export const colors = {
 	green1: '#55C574',
 	green2: '#3D8D54',
 	salmon0: '#EF7E78',
-	transparent: 'rgba(0,0,0,0)'
+	transparent: 'rgba(0,0,0,0)',
 };
 
 export const transitions = {
@@ -32,7 +32,7 @@ export const transitions = {
 	transition2: 'all 0.5s ease-in-out',
 	transition3: 'ease-in-out .2s',
 	transition4: 'all 300ms ease',
-	transition5: 'height 1s ease 0.5s'
+	transition5: 'height 1s ease 0.5s',
 };
 
 export const shadows = {
@@ -40,10 +40,10 @@ export const shadows = {
 	medium: ' 0px 3px 22px #211f1f14',
 	bottom: '0 8px 6px -6px #211f1f',
 	left: '-12px 0px 5px 0px #f3f2f2',
-	right: 'inset 10px 0px 15px 0px #DCDCDF'
+	right: 'inset 10px 0px 15px 0px #DCDCDF',
 };
 
 export const fontSize = {
 	default: '14px',
-	title: '16px'
-}
+	title: '16px',
+};

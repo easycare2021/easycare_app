@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Label, TextInput } from './styles';
 
 const BaseTextInput = ( props ) => {
-  return(
+  return (
     <Container>
       <Label>
         {props.label}
@@ -10,6 +10,6 @@ const BaseTextInput = ( props ) => {
       <TextInput {...props}/>
     </Container>
   );
-}
+};
 
 export default BaseTextInput;

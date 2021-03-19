@@ -52,3 +52,5 @@ export const SignIn = styled.Text`
     color: ${colors.primary};
     background-color: ${colors.white};
 `;
+
+export const ButtonsContainer = styled.View``;
