@@ -22,6 +22,7 @@ export default class BaseService {
 
         const buildedUrl = this.buildUrl(url, pathParams, queries);
 
+        console.log(buildedUrl);
         const response = await this.http.get(buildedUrl);
 
         return response.data;
@@ -30,6 +31,7 @@ export default class BaseService {
     async post(url, data) {
 
         const buildedUrl = this.buildUrl(url);
+        console.log(buildedUrl);
 
         const response = await this.http.post(buildedUrl, data);
 
