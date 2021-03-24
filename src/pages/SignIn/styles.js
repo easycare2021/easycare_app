@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { colors, fontSize } from '../../variables';
 
 export const Container = styled.View`
-    height: 100%;
+    flex: 1;
     width: 100%;
     display: flex;
     justifyContent: space-around;
