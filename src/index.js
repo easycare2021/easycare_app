@@ -10,6 +10,8 @@ import TouchID from './pages/TouchID';
 import Home from './pages/Home';
 
 import Toast from 'react-native-toast-message';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const AppNavigator = createStackNavigator(
     {
@@ -20,7 +22,7 @@ const AppNavigator = createStackNavigator(
       Home: Home,
     },
     {
-      initialRouteName: 'Home',
+      initialRouteName: 'SignIn',
       defaultNavigationOptions: { headerShown: false },
     },
 );
@@ -30,10 +32,10 @@ const AppContainer = createAppContainer(AppNavigator);
 const App = () => {
 
   return (
-    <>
+    <Provider store={store}>
       <AppContainer/>
       <Toast ref={(ref) => Toast.setRef(ref)} />
-    </>
+    </Provider>
   );
 };
 

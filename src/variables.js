@@ -46,4 +46,5 @@ export const shadows = {
 export const fontSize = {
 	default: '14px',
 	title: '16px',
+	plus: '20px',
 };
