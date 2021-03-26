@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Image, Title, Subtitle, UseTouchID, Reject } from './styles';
 
-import FingerPrint from '../../assets/img/fingerprint.png';
+import { FingerprintImage } from '../../assets';
 
 import FingerprintScannerService from '../../services/FingerprintScannerService';
 
@@ -10,7 +10,7 @@ const TouchID = ({ navigation }) => {
 
     return (
         <Container>
-            <Image source={FingerPrint} />
+            <Image source={FingerprintImage} />
             <Title>
                 Autenticar com Touch ID
             </Title>

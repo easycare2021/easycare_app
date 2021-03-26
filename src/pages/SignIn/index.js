@@ -18,9 +18,11 @@ import {
   Loading,
  } from './styles';
 
-import Easycare from '../../assets/img/easycare_default.png';
-import Google from '../../assets/icons/google.png';
-import Facebook from '../../assets/icons/facebook.png';
+import {
+  EasycareDefaultImage,
+  GoogleIcon,
+  FacebookIcon,
+} from '../../assets';
 
 import BaseTextInput from '../../components/BaseTextInput';
 import UserService from '../../services/UserService';
@@ -103,7 +105,7 @@ const SignIn = ({ navigation }) => {
   return (
     <Container>
       <IconContainer>
-        <Icon source={Easycare} />
+        <Icon source={EasycareDefaultImage} />
         <TextIcon>easycare</TextIcon>
       </IconContainer>
 
@@ -127,11 +129,11 @@ const SignIn = ({ navigation }) => {
 
         <OthersConnectionsContainer>
           <MediaIconContainer>
-            <MediaIcon source={Google}/>
+            <MediaIcon source={GoogleIcon}/>
           </MediaIconContainer>
 
           <MediaIconContainer background="#3b5998">
-            <MediaIcon source={Facebook}/>
+            <MediaIcon source={FacebookIcon}/>
           </MediaIconContainer>
         </OthersConnectionsContainer>
       </SocialMediaContainer>

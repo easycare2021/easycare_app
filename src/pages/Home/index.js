@@ -1,41 +1,50 @@
 import React from 'react';
 
-import { 
-  Container, 
-  ToggleButton,
-  ToggleIcon,
-  ContainerImage,
+import {
+  Container,
   CardPatient,
   IconPatient,
   NamePatient,
   ViewLeft,
-  CaseBpm
+  CaseBpm,
+  Heart,
+  FrequencyContainer,
+  Frequency,
+  BPM,
+  AddPatientContainer,
+  Plus,
 } from './styles';
 
-import ToggleImage from '../../assets/icons/toggle.png';
-import BackgroundHome from '../../assets/img/home_background.png';
-import OldMan from '../../assets/img/oldMan.png';
+import {
+  PlusIcon,
+  HomeBackgroundImage,
+  OldManImage,
+  HeartImage,
+} from '../../assets';
+
+import Header from '../../shared/Header';
 
 const Home = ({ navigation }) => {
 
   return (
-      <Container>
-        <ContainerImage source={BackgroundHome}>
-
-          <ToggleButton>
-            <ToggleIcon source={ToggleImage}/>
-          </ToggleButton>
-          <CardPatient>
-            <IconPatient source={OldMan}/>
-            <ViewLeft>
-              <NamePatient>Adailton, 76</NamePatient>
-              <CaseBpm>
-
-              </CaseBpm>
-            </ViewLeft>
-          </CardPatient>
-
-        </ContainerImage>
+      <Container source={HomeBackgroundImage}>
+        <Header navigation={navigation}/>
+        <CardPatient onPress={() => navigation.navigate('Patient')}>
+          <IconPatient source={OldManImage}/>
+          <ViewLeft>
+            <NamePatient>Adailton, 76</NamePatient>
+            <CaseBpm>
+              <Heart source={HeartImage}/>
+              <FrequencyContainer>
+                <Frequency>74</Frequency>
+                <BPM>BPM</BPM>
+              </FrequencyContainer>
+            </CaseBpm>
+          </ViewLeft>
+        </CardPatient>
+        <AddPatientContainer>
+          <Plus source={PlusIcon}/>
+        </AddPatientContainer>
       </Container>
   );
 };

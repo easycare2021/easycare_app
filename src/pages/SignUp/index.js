@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as types from '../../reducers/types';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import {
   Container,
@@ -15,24 +16,22 @@ import {
   GenderDescription,
   Other,
   TitleContainer,
+  Loading,
 } from './styles';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import { TouchableOpacity } from 'react-native';
 
-import FemaleAvatar from '../../assets/img/female_avatar.png';
-import MaleAvatar from '../../assets/img/male_avatar.png';
+import { FemaleAvatarImage, MaleAvatarImage } from '../../assets';
 
 import BaseTextInput from '../../components/BaseTextInput';
 import BaseTextInputMasked from '../../components/BaseTextInputMasked';
 
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
 import Toast from 'react-native-toast-message';
-import { useDispatch, useSelector } from 'react-redux';
 
 import UserService from '../../services/UserService';
 import CaregiverService from '../../services/CaregiverService';
-import { useEffect } from 'react/cjs/react.development';
 
 const userService = new UserService();
 const caregiverService = new CaregiverService();
@@ -54,6 +53,7 @@ const Username = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const nextStep = async ()  => {
 
@@ -63,25 +63,33 @@ const Username = ({ navigation }) => {
       return;
     }
 
-    const alreadExists = await userService.verifyAlreadyExists(username);
+    setLoading(true);
 
-    // user do not exists
-    if (alreadExists === '') {
+    await userService.verifyAlreadyExists(username).then((res) => {
 
-      dispatch({
-        type: types.ADD_USER,
-        payload: {
-          username,
-        },
-      });
+      // user do not exists
+      if (res === '') {
 
-      navigation.navigate('Email');
+        dispatch({
+          type: types.ADD_USER,
+          payload: {
+            username,
+          },
+        });
 
-    } else {
+        setLoading(false);
 
-      alertError('Nome de usuário já cadastrado');
-      return;
-    }
+        navigation.navigate('Email');
+      } else {
+
+        setLoading(false);
+        alertError('Nome de usuário já cadastrado');
+        return;
+      }
+    }).catch((err) => {
+        console.error(err);
+        setLoading(false);
+    });
   };
 
   return (
@@ -89,7 +97,10 @@ const Username = ({ navigation }) => {
       <Title>Digite um nome de usuário</Title>
       <BaseTextInput placeholder="Nome de Usuário" onChangeText={(text) => setUsername(text)}/>
       <ContainerButton onStartShouldSetResponder={nextStep}>
-        <Button><TextButton>Continuar</TextButton></Button>
+        <Button>
+          <TextButton>Continuar</TextButton>
+          { loading && <Loading color="white"/> }
+        </Button>
       </ContainerButton>
     </Container>
   );
@@ -263,6 +274,7 @@ const Gender = ({ navigation }) => {
 
   const [selectedMale, setSelectedMale] = useState(false);
   const [selectedFemale, setSelectedFemale] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -285,6 +297,8 @@ const Gender = ({ navigation }) => {
       return;
     }
 
+    setLoading(true);
+
     dispatch({
       type: types.ADD_CAREGIVER,
       payload: {
@@ -294,9 +308,13 @@ const Gender = ({ navigation }) => {
 
     await caregiverService.store(caregiver).then(() => {
 
+      setLoading(false);
       navigation.navigate('SignIn');
-    }).catch(err => console.error(err));
+    }).catch(err => {
 
+      console.error(err);
+      setLoading(false);
+    });
   };
 
   return (
@@ -308,38 +326,41 @@ const Gender = ({ navigation }) => {
       <GenderContainer>
         <GenderIconContainer>
           <TouchableOpacity onPress={() => { setGender('Male'); setSelectedMale(true); setSelectedFemale(false); }}>
-            <GenderIconMale source={MaleAvatar} selectedMale={selectedMale}/>
+            <GenderIconMale source={MaleAvatarImage} selectedMale={selectedMale}/>
           </TouchableOpacity>
           <GenderDescription>Masculino</GenderDescription>
         </GenderIconContainer>
         <GenderIconContainer>
           <TouchableOpacity onPress={() => { setGender('Female'); setSelectedFemale(true); setSelectedMale(false); }}>
-            <GenderIconFemale source={FemaleAvatar} selectedFemale={selectedFemale}/>
+            <GenderIconFemale source={FemaleAvatarImage} selectedFemale={selectedFemale}/>
           </TouchableOpacity>
           <GenderDescription>Feminino</GenderDescription>
         </GenderIconContainer>
       </GenderContainer>
-      <Other onPress={() => setGender('Other')}>Prefiro não dizer</Other>
+      <Other onPress={() => { setGender('Other'); createCaregiver(); }}>Prefiro não dizer</Other>
       <ContainerButton onStartShouldSetResponder={createCaregiver}>
-        <Button><TextButton>Continuar</TextButton></Button>
+        <Button>
+          <TextButton>Continuar</TextButton>
+          { loading && <Loading />}
+        </Button>
       </ContainerButton>
     </Container>
   );
 };
 
-const SignUpNavigator = createStackNavigator(
-  {
-    Username: Username,
-    Email: Email,
-    Password: Password,
-    Name: Name,
-    Document: Document,
-    Gender: Gender,
-  },
-  {
-    initialRouteName: 'Username',
-    defaultNavigationOptions: { headerShown: false },
-  });
+const Stack = createStackNavigator();
 
+export const SignUp = () => {
+  return (
+    <Stack.Navigator initialRouteName="Username" headerMode="none">
+        <Stack.Screen name="Username" component={Username} />
+        <Stack.Screen name="Email" component={Email} />
+        <Stack.Screen name="Password" component={Password} />
+        <Stack.Screen name="Name" component={Name} />
+        <Stack.Screen name="Document" component={Document} />
+        <Stack.Screen name="Gender" component={Gender} />
+    </Stack.Navigator>
+  );
+};
 
-export default createAppContainer(SignUpNavigator);
+export default SignUp;

@@ -1,40 +1,22 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+import { colors, fontSize } from '../../variables';
+
+export const Container = styled.ImageBackground`
     flex: 1;
     flexDirection: column;
+    padding: 45px 25px;
 `;
 
-export const ContainerImage = styled.ImageBackground`
-    width:  100%;
-    height: 100%;
-`;
-
-export const ToggleButton = styled.View`
-    margin: 5%;
-    width: 50px;
-    height: 50px;
-`;
-
-export const ToggleIcon = styled.Image`
-    marginTop: 25%;
-    alignSelf: center;
-    alignItems: center;
-`;
-
-export const CardPatient = styled.View`
-    margin: 20px;
+export const CardPatient = styled.TouchableOpacity`
     height: 100px;
     padding: 12px;
+    marginTop: 20px;
     borderRadius: 12px;
-    shadowColor: #000;
-    shadowOffset: { width: 1, height: 1 };
-    shadowOpacity: 0.8;
-    elevation: 5
-    backgroundColor: white;
+    elevation: 10;
+    backgroundColor: ${colors.white};
     flexDirection: row;
     flex-wrap: wrap;
-    
     justifyContent: space-between;
 `;
 
@@ -42,7 +24,8 @@ export const IconPatient = styled.Image`
     width: 75px;
     height: 75px;
     borderRadius: 50px;
-    border: 4px solid #3F3D56;
+    borderWidth: 3px;
+    borderColor: ${colors.darkgray};
 `;
 export const ViewLeft = styled.View`
     width: 75%;
@@ -56,13 +39,55 @@ export const NamePatient = styled.Text`
     height: 40%;
     paddingLeft: 10px;
     color: #3F3D56;
-    fontWeight: bold;
-    fontSize: 20px
+    fontWeight: 500;
+    fontSize: ${fontSize.plus};
+    marginTop: 10px;
 `;
 
 export const CaseBpm = styled.View`
     width: 75px;
     height: 75px;
-    backgroundColor: blue;
+    alignItems: flex-end;
+    flexDirection: row;
+    marginRight: 10px;
+`;
+
+export const Heart = styled.Image`
+    width: 50px;
+    height: 42px;
+`;
+
+export const FrequencyContainer = styled.View`
+    alignItems: center;
     justifyContent: flex-end;
+`;
+
+export const Frequency = styled.Text`
+    color: ${colors.primary}
+    fontSize: ${fontSize.plus};
+    fontWeight: bold;
+`;
+
+export const BPM = styled.Text`
+    color: ${colors.primary}
+    fontSize: ${fontSize.default};
+    fontWeight: bold;
+`;
+
+export const AddPatientContainer = styled.TouchableOpacity`
+    height: 80px;
+    width: 80px;
+    marginTop: 20px;
+    alignSelf: center;
+    borderRadius: 80px;
+    elevation: 10;
+    backgroundColor: ${colors.white};
+    display: flex;
+    justifyContent: center;
+    alignItems: center;
+`;
+
+export const Plus = styled.Image`
+    width: 25px;
+    height: 25px;
 `;

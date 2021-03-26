@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { MMKV } from 'react-native-mmkv';
-import Easycare from '../../assets/img/easycare_light.png';
+import { EasycareLightImage } from '../../assets';
 
 import {
   Container,
@@ -24,7 +24,7 @@ const Welcome = ({ navigation }) => {
   return (
     <Container>
       <IconContainer>
-        <Icon source={Easycare} />
+        <Icon source={EasycareLightImage} />
         <TextIcon>easycare</TextIcon>
       </IconContainer>
       <ButtonsContainer>

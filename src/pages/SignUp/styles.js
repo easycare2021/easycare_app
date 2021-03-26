@@ -48,6 +48,11 @@ export const Button = styled.View`
   
 `;
 
+export const Loading = styled.ActivityIndicator`
+    alignSelf: center;
+    marginLeft: 10px;
+`;
+
 export const TextButton = styled.Text`
   color: ${colors.white};
   fontSize: ${ fontSize.default };
