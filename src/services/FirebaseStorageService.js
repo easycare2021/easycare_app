@@ -6,7 +6,7 @@ export default class FirebaseStorageService {
 
         const reference = storage().ref(ref);
 
-        return await reference.putFile(path).then(res => console.log(res)).catch(err => console.error(err));
+        return await reference.putFile(path).catch(err => console.error(err));
     }
 
     async getUrl(reference) {

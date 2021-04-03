@@ -46,7 +46,6 @@ const DrawerContent = ({ navigation }) => {
 
     await caregiverService.show(MMKV.getNumber('caregiverID')).then(response => {
 
-      console.log(response);
       setCaregiver(response);
     }).catch(err => console.log(err));
   };

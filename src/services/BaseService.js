@@ -49,8 +49,6 @@ export default class BaseService {
 
         const buildedUrl = this.buildUrl(url, pathParams, null);
 
-        console.log(buildedUrl);
-
         const response = await this.http.patch(buildedUrl, data, config);
 
         return response.data;
