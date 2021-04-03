@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
   Container,
@@ -23,9 +23,23 @@ import {
 } from '../../assets';
 
 import Header from '../../shared/Header';
+import { BackHandler } from 'react-native';
 
 const Home = ({ navigation }) => {
 
+  useEffect(() => {
+
+    const backAction = () => {
+
+      BackHandler.exitApp();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+
+  }, [navigation]);
   return (
       <Container source={HomeBackgroundImage}>
         <Header navigation={navigation}/>

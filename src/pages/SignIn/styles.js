@@ -1,22 +1,31 @@
-import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
+import styled, { css } from 'styled-components/native';
 
 import { colors, fontSize } from '../../variables';
 
 export const Container = styled.View`
-    flex: 1;
+    height: 100%;
     width: 100%;
     display: flex;
     justifyContent: space-around;
     flexDirection: column;
     alignItems: center;
-    background-color: ${colors.white};
+    backgroundColor: ${colors.white};
+    padding: 50px 0px;
+
+    ${props => props.keyboardIsOpen && css`
+        height: ${(Dimensions.get('window').height - props.keyboardHeight - 27).toFixed(4)}px;
+    `}
 `;
 
 export const IconContainer = styled.View`
     display: flex;
     justifyContent: center;
     alignItems: center;
-    paddingTop: 80px;
+
+    ${props => props.keyboardIsOpen && css`
+        display: none;
+    `}
 `;
 
 export const Icon = styled.Image`
@@ -25,7 +34,7 @@ export const Icon = styled.Image`
 `;
 
 export const TextIcon = styled.Text`
-    font-size: 30px;
+    fontSize: 30px;
     color: ${colors.primary};
 `;
 
@@ -39,14 +48,21 @@ export const InputContainer = styled.View`
 
 export const SignInButton = styled.View`
     border: 1px solid ${colors.white};
-    border-radius: 50px;
+    borderRadius: 50px;
     width: 300px;
     height: 50px;
     display: flex;
     alignItems: center;
     justifyContent: center;
     flexDirection: row;
-    background-color: ${colors.primary};
+    backgroundColor: ${colors.primary};
+
+    ${props => props.keyboardIsOpen && css`
+        position: absolute;
+        bottom: 0;
+        borderRadius: 0px;
+        width: 100%;
+    `}
 `;
 
 export const SignInText = styled.Text`

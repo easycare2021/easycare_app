@@ -35,6 +35,7 @@ export const CaregiverAvatarContainer = styled.View`
 export const CaregiverAvatar = styled.Image`
     width: 60px;
     height: 60px;
+    borderRadius: 60px;
 `;
 
 export const Row = styled.View`

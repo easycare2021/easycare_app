@@ -11,6 +11,10 @@ import HelpIcon from './icons/help.png';
 import FeedbackIcon from './icons/feedback.png';
 import LogoutIcon from './icons/logout.png';
 import ProfileIcon from './icons/profile.png';
+import SwitchCameraIcon from './icons/switch-camera.png';
+import GalleryIcon from './icons/gallery.png';
+import DoneIcon from './icons/done.png';
+import CloseIcon from './icons/close.png';
 
 //images
 
@@ -44,6 +48,10 @@ export {
     FeedbackIcon,
     LogoutIcon,
     ProfileIcon,
+    SwitchCameraIcon,
+    GalleryIcon,
+    DoneIcon,
+    CloseIcon,
     ClockImage,
     EasycareDefaultImage,
     EasycareLightImage,

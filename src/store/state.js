@@ -8,6 +8,8 @@ export const INITIAL_STATE = {
         name: null,
         document: null,
         gender: null,
-        userId: 0,
+        photo: null,
+        phone_number: null,
+        user_id: null,
     },
 };

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { TextInputMask } from 'react-native-masked-text';
+import TextInputMask from 'react-native-text-input-mask';
 import { colors, fontSize } from '../../variables';
 
 export const Container = styled.View`
@@ -14,7 +14,7 @@ export const Label = styled.Text`
     textTransform: uppercase;
 `;
 
-export const TextInputMasked = styled(TextInputMask)`
+export const Input = styled(TextInputMask)`
     borderBottomColor: ${colors.primary};
     borderBottomWidth: 1px;
 `;

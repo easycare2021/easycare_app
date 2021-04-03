@@ -15,7 +15,11 @@ export default class UserService extends BaseService {
         return await this.post(serviceURLs.USERS, data);
     }
 
-    async verifyAlreadyExists(username) {
+    async usernameAlreadyExists(username) {
         return await this.get(serviceURLs.USERS_VALIDATION_USERNAME, [username]);
+    }
+
+    async emailAlreadyExists(email) {
+        return await this.get(serviceURLs.USERS_VALIDATION_EMAIL, [email]);
     }
 }

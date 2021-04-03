@@ -2,14 +2,20 @@ import styled, { css } from 'styled-components/native';
 
 import { colors, fontSize } from '../../variables';
 
-export const Container = styled.View`
-  flex: 1;
-  padding: 40px 30px;
-  background-color: ${colors.white};
+import { Dimensions } from 'react-native';
 
-  ${ props => props.isFlex && css`
+export const Container = styled.View`
+  height: 100%;
+  padding: 40px 30px;
+  backgroundColor: ${colors.white};
+
+  ${props => props.isFlex && css`
     display: flex;
     justifyContent: space-around;
+  `}
+
+  ${props => props.keyboardIsOpen && css`
+    height: ${(Dimensions.get('window').height - props.keyboardHeight).toFixed(0) - 7}px;
   `}
 `;
 
@@ -21,7 +27,8 @@ export const Title = styled.Text`
   fontSize: ${fontSize.plus};
   color: black;
   textAlign: center;
-  marginBottom: 10px;
+  marginBottom: 20px;
+  marginTop: 50px;
 `;
 
 export const Subtitle = styled.Text`
@@ -35,17 +42,25 @@ export const ContainerButton = styled.View`
   bottom: 20px;
   width: 100%;
   left: 30px;
+
+  ${props => props.keyboardIsOpen && css`
+    width: ${(Dimensions.get('window').width).toFixed(0)}px;
+    left: 0;
+  `}
 `;
 
 export const Button = styled.View`
-  border-radius: 50px;
+  borderRadius: 50px;
   height: 50px;
   display: flex;
   alignItems: center;
   justifyContent: center;
   flexDirection: row;
-  background-color: ${colors.primary};
-  
+  backgroundColor: ${colors.primary};
+
+  ${props => props.keyboardIsOpen && css`
+    borderRadius: 0;
+  `}
 `;
 
 export const Loading = styled.ActivityIndicator`
@@ -55,7 +70,7 @@ export const Loading = styled.ActivityIndicator`
 
 export const TextButton = styled.Text`
   color: ${colors.white};
-  fontSize: ${ fontSize.default };
+  fontSize: ${fontSize.default};
 `;
 
 export const GenderContainer = styled.View`
@@ -75,7 +90,7 @@ export const GenderIconFemale = styled.Image`
   height: 150px;
   padding: 0;
   borderRadius: 150px;
-  background: ${ props => props.selectedFemale ? colors.primary : 'transparent'};
+  background: ${props => props.selectedFemale ? colors.primary : 'transparent'};
 `;
 
 export const GenderIconMale = styled.Image`
@@ -83,7 +98,7 @@ export const GenderIconMale = styled.Image`
   height: 150px;
   padding: 0;
   borderRadius: 150px;
-  background: ${ props => props.selectedMale ? colors.primary : 'transparent'};
+  background: ${props => props.selectedMale ? colors.primary : 'transparent'};
 `;
 
 export const GenderDescription = styled.Text`
@@ -94,5 +109,11 @@ export const Other = styled.Text`
   textAlign: center;
   fontSize: ${fontSize.title};
   color: ${colors.gray3};
-  text-decoration: underline;
+  textDecoration: underline;
+`;
+
+export const Label = styled.Text`
+    color: ${colors.primary};
+    fontSize: ${fontSize.default};
+    textTransform: uppercase;
 `;

@@ -9,7 +9,7 @@ export const Container = styled.View`
     justifyContent: space-around;
     flexDirection: column;
     alignItems: center;
-    background-color: ${colors.primary};
+    backgroundColor: ${colors.primary};
 `;
 
 
@@ -27,30 +27,30 @@ export const Icon = styled.Image`
 `;
 
 export const TextIcon = styled.Text`
-    font-size: 30px;
+    fontSize: 30px;
     color: ${colors.white};
 `;
 
 export const SignUp = styled.Text`
     border: 1px solid ${colors.white};
-    border-radius: 50px;
+    borderRadius: 50px;
     width: 300px;
     height: 50px;
     textAlign: center;
     textAlignVertical: center;
     color: white;
-    margin-bottom: 10px;
+    marginBottom: 10px;
 `;
 
 export const SignIn = styled.Text`
     border: 1px solid ${colors.white};
-    border-radius: 50px;
+    borderRadius: 50px;
     width: 300px;
     height: 50px;
     textAlign: center;
     textAlignVertical: center;
     color: ${colors.primary};
-    background-color: ${colors.white};
+    backgroundColor: ${colors.white};
 `;
 
 export const ButtonsContainer = styled.View``;

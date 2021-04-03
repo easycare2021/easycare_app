@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import {
   Container,
   IconContainer,
@@ -9,27 +8,15 @@ import {
   SignInButton,
   SignInText,
   ForgotPassword,
-  SocialMediaContainer,
-  OthersConnectionsContainer,
-  ConnectWith,
-  Stick,
-  MediaIconContainer,
-  MediaIcon,
   Loading,
- } from './styles';
-
-import {
-  EasycareDefaultImage,
-  GoogleIcon,
-  FacebookIcon,
-} from '../../assets';
-
+} from './styles';
+import { EasycareDefaultImage } from '../../assets';
 import BaseTextInput from '../../components/BaseTextInput';
 import UserService from '../../services/UserService';
-
 import { MMKV } from 'react-native-mmkv';
 import FingerprintScannerService from '../../services/FingerprintScannerService';
-import Toast from 'react-native-toast-message';
+import { Keyboard } from 'react-native';
+import { alertError } from '../../utils/alert';
 
 const SignIn = ({ navigation }) => {
 
@@ -39,6 +26,8 @@ const SignIn = ({ navigation }) => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
 
   useEffect(() => {
 
@@ -53,90 +42,79 @@ const SignIn = ({ navigation }) => {
 
       new FingerprintScannerService().release();
     };
-  });
+  }, [navigation]);
+
+  useEffect(() => {
+
+    Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+
+    return () => {
+
+      Keyboard.removeListener('keyboardDidShow', _keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
+    };
+  }, []);
+
+  const _keyboardDidShow = (e) => {
+
+    setKeyboardHeight(e.endCoordinates.height);
+    setKeyboardIsOpen(true);
+    MMKV.set('keyboardIsOpen', true);
+  };
+
+  const _keyboardDidHide = () => {
+
+    setKeyboardHeight(0);
+    setKeyboardIsOpen(false);
+    MMKV.set('keyboardIsOpen', false);
+  };
 
   const auth = async () => {
 
     if (!user.password || !user.email) {
 
-      Toast.show({
-        type: 'error',
-        position: 'bottom',
-        text1: 'Preencha todos os campos!',
-        autoHide: true,
-        visibilityTime: 2000,
-      });
-
+      alertError('Preencha todos os campos!');
       return;
     }
 
     const userService = new UserService();
 
+    setLoading(true);
+
     await userService.auth(user).then((res) => {
 
-      setLoading(true);
+      setLoading(false);
+      MMKV.set('Authorization', res.token);
+      navigation.navigate('TouchID');
+    }).catch(err => {
 
-      setTimeout(() => {
-        MMKV.set('Authorization', res.token);
-        navigation.navigate('TouchID');
+      if (err.response && err.response.status === 401) {
+
+        alertError('Email e/ou senha inválidos');
         setLoading(false);
-      }, 1500);
-    }).catch( err => {
-
-      setLoading(true);
-
-      setTimeout(() => {
-        if (err.response && err.response.status === 401) {
-
-          Toast.show({
-            type: 'error',
-            position: 'bottom',
-            text1: 'Email e/ou senha inválidos.',
-            autoHide: true,
-            visibilityTime: 2000,
-          });
-
-          setLoading(false);
-        }
-      }, 1500);
+        return;
+      }
     });
   };
 
   return (
-    <Container>
-      <IconContainer>
+    <Container keyboardIsOpen={keyboardIsOpen} keyboardHeight={keyboardHeight}>
+      <IconContainer keyboardIsOpen={keyboardIsOpen}>
         <Icon source={EasycareDefaultImage} />
         <TextIcon>easycare</TextIcon>
       </IconContainer>
 
       <InputContainer>
         <BaseTextInput label="email" onChangeText={(text) => setUser({ ...user, email: text })} />
-        <BaseTextInput label="password" onChangeText={(text) => setUser({ ...user, password: text })} secureTextEntry/>
+        <BaseTextInput label="password" onChangeText={(text) => setUser({ ...user, password: text })} secureTextEntry />
         <ForgotPassword>forgot password?</ForgotPassword>
       </InputContainer>
 
-      <SignInButton onStartShouldSetResponder={auth}>
+      <SignInButton onStartShouldSetResponder={auth} keyboardIsOpen={keyboardIsOpen}>
         <SignInText>sign in</SignInText>
-        { loading && <Loading color="white"/> }
+        {loading && <Loading color="white" />}
       </SignInButton>
-
-      <SocialMediaContainer>
-        <OthersConnectionsContainer>
-          <Stick />
-          <ConnectWith>or connect with</ConnectWith>
-          <Stick />
-        </OthersConnectionsContainer>
-
-        <OthersConnectionsContainer>
-          <MediaIconContainer>
-            <MediaIcon source={GoogleIcon}/>
-          </MediaIconContainer>
-
-          <MediaIconContainer background="#3b5998">
-            <MediaIcon source={FacebookIcon}/>
-          </MediaIconContainer>
-        </OthersConnectionsContainer>
-      </SocialMediaContainer>
     </Container>
   );
 };

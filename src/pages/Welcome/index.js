@@ -15,11 +15,11 @@ import {
 
 const Welcome = ({ navigation }) => {
 
-  useEffect(() => {
-    if (MMKV.getBoolean('showTouchIDAuthentication')) {
-      navigation.navigate('SignIn');
-    }
-  });
+  // useEffect(() => {
+  //   if (MMKV.getBoolean('showTouchIDAuthentication')) {
+  //     navigation.navigate('SignIn');
+  //   }
+  // });
 
   return (
     <Container>
