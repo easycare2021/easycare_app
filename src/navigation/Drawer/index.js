@@ -2,8 +2,8 @@ import React from 'react';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Home from '../../pages/Home';
-import Patient from '../../pages/Patient';
+import Home from '~/pages/Home';
+import Patient from '~/pages/Patient';
 
 import DrawerContent from './DrawerContent';
 

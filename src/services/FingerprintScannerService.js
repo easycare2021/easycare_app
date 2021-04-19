@@ -11,7 +11,7 @@ export default class FingerprintScannerService {
         }).then(async res => {
 
             MMKV.set('showTouchIDAuthentication', true);
-            await navigation.navigate('Home');
+            await navigation.navigate('HomeStack');
 
         }).catch(err => {
 

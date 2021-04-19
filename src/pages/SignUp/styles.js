@@ -1,13 +1,12 @@
 import styled, { css } from 'styled-components/native';
 
-import { colors, fontSize } from '../../variables';
+import { colors, fontSize } from '~/variables';
 
 import { Dimensions } from 'react-native';
 
 export const Container = styled.View`
   height: 100%;
-  padding: 40px 30px;
-  backgroundColor: ${colors.white};
+  backgroundColor: ${colors.primary};
 
   ${props => props.isFlex && css`
     display: flex;
@@ -19,15 +18,36 @@ export const Container = styled.View`
   `}
 `;
 
-export const TitleContainer = styled.View`
+export const InfoLabel = styled.Text`
+  textAlign: center;
+  margin: 10px 0px;
+  color: ${colors.gray4};
+`;
 
+export const HeaderContainer = styled.View`
+  height: 15%;
+  justifyContent: center;
+  alignItems: center;
+  backgroundColor: ${colors.primary}
+`;
+
+export const HeaderTitle = styled.Text`
+  fontSize: 24px;
+  color: ${colors.white};
+`;
+
+export const Content = styled.View`
+  height: 85%;
+  borderTopLeftRadius: 100px;
+  padding: 0px 30px;
+  background: ${colors.gray1};
 `;
 
 export const Title = styled.Text`
   fontSize: ${fontSize.plus};
   color: black;
   textAlign: center;
-  marginBottom: 20px;
+  marginBottom: 40px;
   marginTop: 50px;
 `;
 
@@ -41,11 +61,12 @@ export const ContainerButton = styled.View`
   position: absolute;
   bottom: 20px;
   width: 100%;
-  left: 30px;
+  padding: 0 30px;
 
   ${props => props.keyboardIsOpen && css`
     width: ${(Dimensions.get('window').width).toFixed(0)}px;
     left: 0;
+    padding: 0px;
   `}
 `;
 
@@ -61,55 +82,6 @@ export const Button = styled.View`
   ${props => props.keyboardIsOpen && css`
     borderRadius: 0;
   `}
-`;
-
-export const Loading = styled.ActivityIndicator`
-    alignSelf: center;
-    marginLeft: 10px;
-`;
-
-export const TextButton = styled.Text`
-  color: ${colors.white};
-  fontSize: ${fontSize.default};
-`;
-
-export const GenderContainer = styled.View`
-  display: flex;
-  flexDirection: row;
-  justifyContent: space-around;
-`;
-
-export const GenderIconContainer = styled.View`
-  display: flex;
-  justifyContent: space-around;
-  alignItems: center;
-`;
-
-export const GenderIconFemale = styled.Image`
-  width: 150px;
-  height: 150px;
-  padding: 0;
-  borderRadius: 150px;
-  background: ${props => props.selectedFemale ? colors.primary : 'transparent'};
-`;
-
-export const GenderIconMale = styled.Image`
-  width: 150px;
-  height: 150px;
-  padding: 0;
-  borderRadius: 150px;
-  background: ${props => props.selectedMale ? colors.primary : 'transparent'};
-`;
-
-export const GenderDescription = styled.Text`
-
-`;
-
-export const Other = styled.Text`
-  textAlign: center;
-  fontSize: ${fontSize.title};
-  color: ${colors.gray3};
-  textDecoration: underline;
 `;
 
 export const Label = styled.Text`

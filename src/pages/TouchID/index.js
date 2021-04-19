@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Container, Image, Title, Subtitle, UseTouchID, Reject } from './styles';
 
-import { FingerprintImage } from '../../assets';
+import { FingerprintImage } from '~/assets';
 
-import FingerprintScannerService from '../../services/FingerprintScannerService';
+import FingerprintScannerService from '~/services/FingerprintScannerService';
 
 const TouchID = ({ navigation }) => {
 

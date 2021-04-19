@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { colors } from '../../variables';
+import { colors } from '~/variables';
 
 export const Container = styled.View`
   display: flex;

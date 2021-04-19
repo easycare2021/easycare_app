@@ -39,7 +39,7 @@ import {
   Avatar,
  } from './styles';
 
-import Header from '../../shared/Header';
+import Header from '~/shared/Header';
 
 import {
   PatientBackgroundImage,
@@ -53,7 +53,7 @@ import {
   MoonImage,
   OldManImage,
 }
-from '../../assets';
+from '~/assets';
 
 const Patient = ({ navigation }) => {
   return (

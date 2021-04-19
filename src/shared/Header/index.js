@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Toggle } from './styles';
 
-import { ToggleIcon } from '../../assets';
+import { ToggleIcon } from '~/assets';
 
 const Header = ({ navigation }) => {
   return (

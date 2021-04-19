@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Label, Input } from './styles';
 
-const BaseTextInputMasked = (props) => {
+const BaseInputMasked = (props) => {
     return (
         <Container>
             <Label>
@@ -13,4 +13,4 @@ const BaseTextInputMasked = (props) => {
     );
 };
 
-export default BaseTextInputMasked;
+export default BaseInputMasked;

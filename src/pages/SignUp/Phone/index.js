@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Base from '../Base';
 import { Title } from '../styles';
 import { useDispatch } from 'react-redux';
-import { alertError } from '../../../utils/alert';
-import * as types from '../../../reducers/types';
-import BaseTextInputMasked from '../../../components/BaseTextInputMasked';
+import { alertError } from '~/utils/alert';
+import * as types from '~/reducers/types';
+import BaseInputMasked from '~/components/BaseInputMasked';
 
 const Phone = ({ navigation }) => {
 
@@ -13,7 +13,6 @@ const Phone = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const nextStep = () => {
-
 
     if (!phone) {
 
@@ -34,10 +33,13 @@ const Phone = ({ navigation }) => {
   return (
     <Base nextStep={nextStep}>
       <Title>Informe seu número de celular.</Title>
-      <BaseTextInputMasked
+      <BaseInputMasked
+        label="Celular"
         mask={'([00]) [00000]-[0000]'}
         keyboardType="numeric"
         onChangeText={(text) => setPhone(text)}
+        placeholder="(00) 00000-0000"
+        autoCompleteType="tel"
       />
     </Base>
   );

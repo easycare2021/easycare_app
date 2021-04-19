@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import {
   Container,
   CaregiverContainer,
@@ -14,17 +13,16 @@ import {
   OptionIcon,
   OptionTitle,
 } from './styles';
-
 import {
   HomeIcon,
   HelpIcon,
   ProfileIcon,
   FeedbackIcon,
   LogoutIcon,
-} from '../../../assets';
-
-import CaregeverService from '../../../services/CaregiverService';
+} from '~/assets';
+import CaregeverService from '~/services/CaregiverService';
 import { MMKV } from 'react-native-mmkv';
+import { deleteAllKeys } from '~/utils/mmkv';
 
 const DrawerContent = ({ navigation }) => {
 
@@ -80,7 +78,7 @@ const DrawerContent = ({ navigation }) => {
           <OptionTitle>Ajuda</OptionTitle>
         </Option>
         <Row />
-        <Option onPress={() => navigate('Logout')}>
+        <Option onPress={() => { deleteAllKeys(); navigation.navigate('Welcome');}}>
           <OptionIcon source={LogoutIcon} />
           <OptionTitle>Sair</OptionTitle>
         </Option>

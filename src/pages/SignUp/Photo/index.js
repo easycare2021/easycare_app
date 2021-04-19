@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { launchImageLibrary } from 'react-native-image-picker';
-
 import {
   Container,
   Camera,
@@ -13,8 +12,7 @@ import {
   Negate,
   ActionContainer,
 } from './styles';
-
-import { GalleryIcon, SwitchCameraIcon } from '../../../assets';
+import { GalleryIcon, SwitchCameraIcon } from '~/assets';
 
 const Photo = ({ navigation }) => {
 
@@ -43,11 +41,15 @@ const Photo = ({ navigation }) => {
     });
   };
 
+  const skip = () => {
+    navigation.navigate('Gender');
+  };
+
   return (
     <Container>
       <HeaderContainer>
         <HeaderTitle>Por último, uma foto para o seu perfil.</HeaderTitle>
-        <Negate>Agora não...</Negate>
+        <Negate onPress={skip}>Agora não...</Negate>
       </HeaderContainer>
       <Camera
         ref={cameraRef}

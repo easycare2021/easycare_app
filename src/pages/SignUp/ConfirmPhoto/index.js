@@ -7,10 +7,10 @@ import {
     Action,
     Icon,
 } from './styles';
-import { CloseIcon, DoneIcon } from '../../../assets';
-import FirebaseStorageService from '../../../services/FirebaseStorageService';
+import { CloseIcon, DoneIcon } from '~/assets';
+import FirebaseStorageService from '~/services/FirebaseStorageService';
 import { useDispatch, useSelector } from 'react-redux';
-import * as types from '../../../reducers/types';
+import * as types from '~/reducers/types';
 
 
 const ConfirmPhoto = ({ route, navigation }) => {

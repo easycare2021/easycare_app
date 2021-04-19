@@ -12,4 +12,7 @@ export const serviceURLs = {
     CAREGIVERS_ID: '/caregivers/{id}',
     CAREGIVERS_ID_IMAGES: '/caregivers/{id}/images',
     CAREGIVERS_VALIDATION_DOCUMENT: '/caregivers/validation/{document}',
+
+    //tokens
+    TOKENS: '/tokens',
 };

@@ -1,6 +1,6 @@
 import * as types from '../types';
 
-import { INITIAL_STATE } from '../../store/state';
+import { INITIAL_STATE } from '~/store/state';
 
 const UserReducer = (state = INITIAL_STATE.user, action) => {
 

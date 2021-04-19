@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { RNCamera } from 'react-native-camera';
-import { colors, fontSize } from '../../../variables';
+import { colors, fontSize } from '~/variables';
 
 export const Container = styled.View`
     flex: 1;

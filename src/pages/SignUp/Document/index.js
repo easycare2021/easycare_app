@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Title} from '../styles';
 import Base from '../Base';
-import BaseTextInputMasked from '../../../components/BaseTextInputMasked';
+import BaseInputMasked from '~/components/BaseInputMasked';
 import { useDispatch } from 'react-redux';
-import { alertError } from '../../../utils/alert';
-import * as types from '../../../reducers/types';
+import { alertError } from '~/utils/alert';
+import * as types from '~/reducers/types';
+import CaregiverService from '~/services/CaregiverService';
 import { cpf } from 'cpf-cnpj-validator';
-import CaregiverService from '../../../services/CaregiverService';
 
 const Document = ({ navigation }) => {
 
@@ -55,10 +55,13 @@ const Document = ({ navigation }) => {
     return (
         <Base nextStep={nextStep} loading={loading}>
             <Title>Agora nos informe seu CPF</Title>
-            <BaseTextInputMasked
+            <BaseInputMasked
                 mask={'[000].[000].[000]-[00]'}
                 keyboardType="numeric"
                 onChangeText={text => setDocument(text)}
+                label="CPF"
+                placeholder="000.000.000-00"
+                autoCompleteType="off"
             />
         </Base>
     );

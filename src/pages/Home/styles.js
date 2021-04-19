@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { colors, fontSize } from '../../variables';
+import { colors, fontSize } from '~/variables';
 
 export const Container = styled.ImageBackground`
     flex: 1;

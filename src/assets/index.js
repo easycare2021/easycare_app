@@ -15,6 +15,8 @@ import SwitchCameraIcon from './icons/switch-camera.png';
 import GalleryIcon from './icons/gallery.png';
 import DoneIcon from './icons/done.png';
 import CloseIcon from './icons/close.png';
+import EyeIcon from './icons/eye.png';
+import EyeIconSlash from './icons/eye-slash.png';
 
 //images
 
@@ -52,6 +54,8 @@ export {
     GalleryIcon,
     DoneIcon,
     CloseIcon,
+    EyeIcon,
+    EyeIconSlash,
     ClockImage,
     EasycareDefaultImage,
     EasycareLightImage,

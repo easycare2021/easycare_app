@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Base from '../Base';
 import { Title } from '../styles';
 import { useDispatch } from 'react-redux';
-import { alertError } from '../../../utils/alert';
-import * as types from '../../../reducers/types';
-import BaseTextInput from '../../../components/BaseTextInput';
-import UserService from '../../../services/UserService';
+import { alertError } from '~/utils/alert';
+import * as types from '~/reducers/types';
+import UserService from '~/services/UserService';
+import BaseInput from '~/components/BaseInput';
 
 const Email = ({ navigation }) => {
 
@@ -57,7 +57,13 @@ const Email = ({ navigation }) => {
     return (
         <Base nextStep={nextStep} loading={loading}>
             <Title>Agora, precisamos do seu email.</Title>
-            <BaseTextInput placeholder="Email" onChangeText={(text) => setEmail(text)} />
+            <BaseInput
+                label="Email"
+                placeholder="easycare@examplo.com"
+                autoCompleteType="email"
+                keyboardType="email-address"
+                onChangeText={(text) => setEmail(text)}
+            />
         </Base>
     );
 };

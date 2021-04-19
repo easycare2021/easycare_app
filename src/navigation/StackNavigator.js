@@ -19,7 +19,7 @@ const WelcomeStack = () => {
             <Stack.Screen name="SignIn" component={SignIn} />
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="TouchID" component={TouchID} />
-            <Stack.Screen name="Home" component={HomeStack} />
+            <Stack.Screen name="HomeStack" component={HomeStack} />
         </Stack.Navigator>
     );
 };
@@ -27,7 +27,7 @@ const WelcomeStack = () => {
 const HomeStack = () => {
     return (
         <Stack.Navigator headerMode="none">
-            <Stack.Screen name="Home" component={DrawerNavigator} />
+            <Stack.Screen name="Drawer" component={DrawerNavigator} />
             <Stack.Screen name="Patient" component={Patient} />
         </Stack.Navigator>
     );

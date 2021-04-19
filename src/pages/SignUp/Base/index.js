@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Keyboard } from 'react-native';
 import { MMKV } from 'react-native-mmkv';
 
-import { Button, Container, ContainerButton, Loading, TextButton } from '../styles';
+import { Container, ContainerButton, Content, HeaderContainer, HeaderTitle } from '../styles';
 
-const Base = ({ children, nextStep, loading }) => {
+import BaseButton from '~/components/BaseButton';
+
+const Base = ({ children, nextStep, loading, text }) => {
 
     const [keyboardHeight, setKeyboardHeight] = useState(0);
     const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
@@ -35,12 +37,19 @@ const Base = ({ children, nextStep, loading }) => {
 
     return (
         <Container keyboardIsOpen={keyboardIsOpen} keyboardHeight={keyboardHeight}>
-            {children}
-            <ContainerButton onStartShouldSetResponder={nextStep} keyboardIsOpen={keyboardIsOpen}>
-                <Button keyboardIsOpen={keyboardIsOpen}>
-                    <TextButton>Continuar</TextButton>
-                    {loading && <Loading color="white" />}
-                </Button>
+            <HeaderContainer>
+                <HeaderTitle>easycare</HeaderTitle>
+            </HeaderContainer>
+            <Content>
+                {children}
+            </Content>
+            <ContainerButton keyboardIsOpen={keyboardIsOpen}>
+                <BaseButton
+                    text={text ? text : 'Continuar'}
+                    keyboardIsOpen={keyboardIsOpen}
+                    loading={loading}
+                    onPress={nextStep}
+                />
             </ContainerButton>
         </Container>
     );

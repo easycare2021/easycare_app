@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
 import {
   Container,
   Title,
-  ContainerButton,
-  Button,
-  TextButton,
-  TitleContainer,
   Subtitle,
   GenderContainer,
   GenderIconContainer,
@@ -14,18 +9,17 @@ import {
   GenderDescription,
   GenderIconFemale,
   Other,
-  Loading,
-} from '../styles';
-
+  TitleContainer,
+} from './styles';
+import { alertError } from '~/utils/alert';
+import * as types from '~/reducers/types';
+import { FemaleAvatarImage, MaleAvatarImage } from '~/assets';
+import CaregiverService from '~/services/CaregiverService';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { alertError } from '../../../utils/alert';
-import * as types from '../../../reducers/types';
-
-import CaregiverService from '../../../services/CaregiverService';
 import { BackHandler, TouchableOpacity } from 'react-native';
-import { FemaleAvatarImage, MaleAvatarImage } from '../../../assets';
 import { MMKV } from 'react-native-mmkv';
+import Base from '../Base';
+import { deleteAllKeys } from '~/utils/mmkv';
 
 const Gender = ({ navigation }) => {
 
@@ -81,6 +75,7 @@ const Gender = ({ navigation }) => {
     await caregiverService.store(caregiver).then((response) => {
 
       setLoading(false);
+      deleteAllKeys();
 
       MMKV.set('caregiverID', response.id);
       navigation.navigate('SignIn');
@@ -92,33 +87,29 @@ const Gender = ({ navigation }) => {
   };
 
   return (
-    <Container isFlex={true}>
-      <TitleContainer>
-        <Title>Olá {caregiver.name},</Title>
-        <Subtitle>Precisamos que informe seu gênero</Subtitle>
-      </TitleContainer>
-      <GenderContainer>
-        <GenderIconContainer>
-          <TouchableOpacity onPress={() => { setGender('Male'); setSelectedMale(true); setSelectedFemale(false); }}>
-            <GenderIconMale source={MaleAvatarImage} selectedMale={selectedMale} />
-          </TouchableOpacity>
-          <GenderDescription>Masculino</GenderDescription>
-        </GenderIconContainer>
-        <GenderIconContainer>
-          <TouchableOpacity onPress={() => { setGender('Female'); setSelectedFemale(true); setSelectedMale(false); }}>
-            <GenderIconFemale source={FemaleAvatarImage} selectedFemale={selectedFemale} />
-          </TouchableOpacity>
-          <GenderDescription>Feminino</GenderDescription>
-        </GenderIconContainer>
-      </GenderContainer>
-      <Other onPress={() => { setGender('Other'); createCaregiver(); }}>Prefiro não dizer</Other>
-      <ContainerButton onStartShouldSetResponder={createCaregiver}>
-        <Button>
-          <TextButton>Continuar</TextButton>
-          {loading && <Loading color="white" />}
-        </Button>
-      </ContainerButton>
-    </Container>
+    <Base loading={loading} nextStep={createCaregiver} text="Finalizar">
+      <Container>
+        <TitleContainer>
+          <Title>Olá {caregiver.name},</Title>
+          <Subtitle>Precisamos que informe seu gênero</Subtitle>
+        </TitleContainer>
+        <GenderContainer>
+          <GenderIconContainer>
+            <TouchableOpacity onPress={() => { setGender('Male'); setSelectedMale(true); setSelectedFemale(false); }}>
+              <GenderIconMale source={MaleAvatarImage} selectedMale={selectedMale} />
+            </TouchableOpacity>
+            <GenderDescription>Masculino</GenderDescription>
+          </GenderIconContainer>
+          <GenderIconContainer>
+            <TouchableOpacity onPress={() => { setGender('Female'); setSelectedFemale(true); setSelectedMale(false); }}>
+              <GenderIconFemale source={FemaleAvatarImage} selectedFemale={selectedFemale} />
+            </TouchableOpacity>
+            <GenderDescription>Feminino</GenderDescription>
+          </GenderIconContainer>
+        </GenderContainer>
+        <Other onPress={() => { setGender('Other'); createCaregiver(); }}>Prefiro não dizer</Other>
+      </Container>
+    </Base>
   );
 };
 

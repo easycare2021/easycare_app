@@ -1,6 +1,6 @@
 {
-  "name": "easycare_app",
-  "version": "0.0.1",
+  "name": "easycare",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -13,7 +13,9 @@
   "dependencies": {
     "@babel/preset-env": "^7.1.6",
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/push-notification-ios": "^1.8.0",
     "@react-native-firebase/app": "^11.2.0",
+    "@react-native-firebase/messaging": "^11.2.0",
     "@react-native-firebase/storage": "^11.2.0",
     "@react-navigation/drawer": "^5.12.4",
     "@react-navigation/native": "^5.9.3",
@@ -21,12 +23,13 @@
     "@reduxjs/toolkit": "^1.5.0",
     "axios": "^0.21.1",
     "cpf-cnpj-validator": "^1.0.3",
-    "react": "17.0.1",
+    "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-native": "0.64.0",
     "react-native-camera": "^3.43.1",
     "react-native-fingerprint-scanner": "^6.0.0",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-global-font": "^1.0.2",
     "react-native-image-picker": "^3.3.2",
     "react-native-mmkv": "^1.0.10",
     "react-native-reanimated": "^2.0.0",
@@ -37,13 +40,15 @@
     "react-navigation": "^4.4.4",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "typescript": "^4.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
     "@babel/runtime": "^7.13.10",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-root-import": "^6.6.0",
     "eslint": "^7.22.0",
     "eslint-plugin-react-native": "^3.10.0",
     "jest": "^26.6.3",

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import Base from '../Base';
 import { Title } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { alertError } from '../../../utils/alert';
-import * as types from '../../../reducers/types';
-import BaseTextInput from '../../../components/BaseTextInput';
-import UserService from '../../../services/UserService';
+import { alertError } from '~/utils/alert';
+import * as types from '~/reducers/types';
+import UserService from '~/services/UserService';
+import BaseInput from '~/components/BaseInput';
+import { MMKV } from 'react-native-mmkv';
 
 const Name = ({ navigation }) => {
 
@@ -37,6 +38,7 @@ const Name = ({ navigation }) => {
 
     await userService.store(user).then(response => {
 
+      MMKV.set('user_id', response.id);
       dispatch({
         type: types.ADD_CAREGIVER,
         payload: {
@@ -47,7 +49,7 @@ const Name = ({ navigation }) => {
       setLoading(false);
       navigation.navigate('Document');
     }).catch(err => {
-
+      console.log(err);
       alertError('Erro ao cadastrar nome');
       setLoading(false);
       return err;
@@ -57,7 +59,12 @@ const Name = ({ navigation }) => {
   return (
     <Base nextStep={nextStep} loading={loading}>
       <Title>Informe seu nome completo.</Title>
-      <BaseTextInput placeholder="Nome Completo" onChangeText={(text) => setName(text)} />
+      <BaseInput
+        label="Nome completo"
+        placeholder="Easycare"
+        onChangeText={(text) => setName(text)}
+        autoCompleteType="name"
+      />
     </Base>
   );
 };
